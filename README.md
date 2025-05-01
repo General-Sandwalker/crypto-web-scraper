@@ -95,7 +95,7 @@ python app.py
 
 ## Author
 
-Student project for Wahid Hamdi
+General Sandwalker
 
 ---
 
