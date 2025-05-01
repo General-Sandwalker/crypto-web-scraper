@@ -1,0 +1,62 @@
+{
+    "name": "crypto-web-scraper",
+    "image": "ghcr.io/general-sandwalker/basedevelopmentimage:alpine",
+    "workspaceFolder": "/workspaces/crypto-web-scraper",
+    "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/crypto-web-scraper,type=bind,consistency=cached",
+    "mounts": [
+      "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
+    ],
+    "remoteUser": "root",
+    "runArgs": [
+      "--network=host"
+    ],
+    "customizations": {
+      "vscode": {
+        "settings": {
+          "terminal.integrated.defaultProfile.linux": "zsh"
+        },
+        "extensions": [
+          "redhat.vscode-xml",
+          "redhat.vscode-yaml",
+          "bradlc.vscode-tailwindcss",
+          "dustypomerleau.rust-syntax",
+          "ms-vscode.remote-explorer",
+          "ms-vscode-remote.remote-ssh-edit",
+          "ms-vscode-remote.remote-ssh",
+          "christian-kohler.path-intellisense",
+          "cweijan.vscode-office",
+          "s3gf4ult.monokai-vibrant",
+          "ms-vscode-remote.remote-containers",
+          "cweijan.vscode-database-client2",
+          "cweijan.dbclient-jdbc",
+          "fill-labs.dependi",
+          "vadimcn.vscode-lldb",
+          "mikestead.dotenv",
+          "ms-azuretools.vscode-docker",
+          "ArthurLobo.easy-codesnap",
+          "janisdd.vscode-edit-csv",
+          "dsznajder.es7-react-js-snippets",
+          "tamasfe.even-better-toml",
+          "GrapeCity.gc-excelviewer",
+          "RichardLuo.frosted-glass-theme",
+          "ecmel.vscode-html-css",
+          "kisstkondoros.vscode-gutter-preview",
+          "xabikos.JavaScriptSnippets",
+          "ms-vscode.vscode-typescript-next",
+          "10F.laetus",
+          "yandeu.five-server",
+          "PKief.material-icon-theme",
+          "OliverCederborg.modern-monokai",
+          "larscom.monokai-dark-vibrant",
+          "GitHub.copilot",
+          "GitHub.copilot-chat",
+          "akamud.vscode-theme-onedark",
+          "formulahendry.auto-close-tag",
+          "jeff-hykin.better-dockerfile-syntax",
+          "ms-python.python",
+          "076923.python-image-preview"
+        ]
+      }
+    }
+  }
+  
