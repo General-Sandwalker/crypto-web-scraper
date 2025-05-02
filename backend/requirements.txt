@@ -1,0 +1,7 @@
+fastapi[standard]
+sqlalchemy
+psycopg2-binary
+pandas
+matplotlib
+requests
+beautifulsoup4
