@@ -1,105 +1,80 @@
 # Crypto Web Scraper
 
-A full-stack application for scraping, analyzing, and visualizing cryptocurrency price data.
+This project is a web scraper and API for tracking cryptocurrency prices. It fetches real-time prices for popular cryptocurrencies (Bitcoin, Ethereum, Dogecoin) from the CoinGecko API, stores them in a PostgreSQL database, and provides endpoints to view the latest prices and plot historical price trends.
 
 ## Features
 
-- Web scraping of historical cryptocurrency prices (BTC, ETH, XMR)
-- Persistent storage in PostgreSQL database
-- RESTful API for accessing and manipulating data
-- Interactive data visualization with Chart.js
-- Modern responsive UI built with TailwindCSS
+- Scrape real-time crypto prices from CoinGecko.
+- Store price data in a PostgreSQL database.
+- REST API to trigger scraping, fetch prices, and generate a price trend plot.
+- Plot and save a chart of price history using Matplotlib.
 
-## Tech Stack
+## Example Result
 
-### Backend
-- Python FastAPI
-- SQLAlchemy ORM
-- PostgreSQL database
-- Beautiful Soup for web scraping
-- Pandas for data manipulation
-- Matplotlib for image generation
+Below is an example of the generated price trend plot:
 
-### Frontend
-- Node.js with Express
-- TailwindCSS for styling
-- Chart.js for interactive charts
-- Alpine.js for reactivity
+![Crypto Prices Example](crypto_prices.png)
 
-## Project Structure
-
-```
-crypto-web-scraper/
-├── backend/                  # Python FastAPI backend
-│   ├── app/
-│   │   ├── crud/             # Database operations
-│   │   ├── models/           # SQLAlchemy models
-│   │   ├── routes/           # API endpoints
-│   │   ├── schemas/          # Pydantic schemas
-│   │   ├── services/         # Business logic
-│   │   ├── db.py             # Database connection
-│   │   └── main.py           # FastAPI application
-│   ├── Dockerfile            # Backend Docker config
-│   └── requirements.txt      # Python dependencies
-├── frontend/                 # Node.js frontend
-│   ├── public/               # Static assets
-│   │   ├── css/              # Stylesheets
-│   │   ├── js/               # JavaScript files
-│   │   └── index.html        # Main HTML file
-│   ├── index.mjs             # Express server
-│   ├── package.json          # Node.js dependencies
-│   └── Dockerfile            # 
-└── docker-compose.yaml       # Docker Compose config
-```
+*(The image above will be generated after running the `/plot` endpoint.)*
 
 ## Getting Started
 
-### Prerequisites
-- Docker and Docker Compose
-- Node.js (for local development)
-- Python 3.12 (for local development)
+Clone the repository:
 
-### Running the Application
-
-1. Start the application using Docker Compose:
-   ```bash
-   docker-compose up
-   ```
-
-2. Access the frontend at:
-   ```
-   http://localhost:3000
-   ```
-
-3. Access the backend API at:
-   ```
-   http://localhost:8000
-   ```
-
-### Running Locally (Development)
-
-#### Backend
-```bash
-cd backend
-pip install -r requirements.txt
-uvicorn app.main:app --reload
-```
-
-#### Frontend
-```bash
-cd frontend
-npm install
-npm run dev
+```sh
+git clone https://github.com/General-Sandwalker/crypto-web-scraper.git
+cd crypto-web-scraper
 ```
 
 ## API Endpoints
 
-- `GET /coins/` - List supported cryptocurrencies
-- `POST /scrape/` - Trigger web scraping for new data
-- `GET /raw/` - Get raw price data with filters
-- `GET /export/csv/` - Export price data as CSV
-- `GET /plot/` - Generate price chart image
+- `POST /scrape` — Fetch and store the latest prices.
+- `GET /prices` — Get the 100 most recent price records.
+- `GET /plot` — Generate and save a plot of price history.
 
-## License
+## Local Deployment (Python)
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+1. **Install dependencies**  
+    Make sure you have Python 3.13+ and PostgreSQL installed and running.
+
+    ```sh
+    pip install -r requirements.txt
+    ```
+
+2. **Set up PostgreSQL**  
+    Create a database and user matching the connection string in `main.py` (default: `user:password@localhost:5432/cryptodb`).
+
+    ```sh
+    # Example using psql
+    psql -U postgres
+    CREATE DATABASE cryptodb;
+    CREATE USER "user" WITH PASSWORD 'password';
+    GRANT ALL PRIVILEGES ON DATABASE cryptodb TO "user";
+    ```
+
+3. **Run the FastAPI app**
+
+    ```sh
+    uvicorn main:app --reload
+    ```
+
+4. **Access the API**  
+    Visit [http://localhost:8000/docs](http://localhost:8000/docs) for the interactive Swagger UI.
+
+## Deployment with Docker Compose
+
+1. **Build and start the services**
+
+    ```sh
+    docker-compose up --build
+    ```
+
+2. **Access the API**  
+    Visit [http://localhost:8000/docs](http://localhost:8000/docs) in your browser.
+
+## Notes
+
+- The plot image (`crypto_prices.png`) will be saved in the project directory after calling the `/plot` endpoint.
+- You can customize the list of cryptocurrencies by editing the `fetch_crypto_prices` function in `main.py`.
+
+---
